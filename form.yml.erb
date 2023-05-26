@@ -114,42 +114,15 @@ attributes:
       - ["<%= g %>","<%= g %>"]
       <%- end %>
 
-  modules: 
-    label: "Anaconda Version"
-    widget: "select"
-    required: true
-    value: "anaconda3/2022.05-gcc/9.5.0"
-    options:
-      - ["anaconda3/2022.05-gcc/9.5.0","anaconda3/2022.05-gcc/9.5.0"]
-
-  pbs_modules:
-    label: "List of modules to be loaded, separate by an empty space"
+  images:
+    label: "Path to the container image"
     value: ""
     help: |
-      <small> Provide a space-separated list of modules to be loaded. <br>
-      - For example: <b>openjdk/11.0.2-gcc/8.3.1 jags/4.3.0-gcc/8.3.1</b>
+      <small> Provide a path to the container image. This could be a link to 
+      a Docker/Apptainer image or path to a directory/sif file<br>
+      - Docker example: <b>docker://jupyter/scipy-notebook</b><br>
+      - Local example: <b>/zfs/citi/container_images/scipy-notebook_latest.sif</b>
       </small>
-
-  pbs_venv:
-    label: "Path to Python virtual/conda environment"
-    value: ""
-    help: |
-      <small> Provide an activation command to load the corresponding Python <br>
-      virtual (venv) or conda environment. You can replace NAME_OF_ENVIRONMENT <br>
-      with a corresponding conda environment, or PATH_TO_VIRTUAL_ENVIRONMENT <br>
-      with a specific path to your venv environment directory. <br>
-      - Example conda: <b>conda activate NAME_OF_ENVIRONMENT</b> <br>
-      - Example venv: <b>source PATH_TO_VIRTUAL_ENVIRONMENT/bin/activate</b> <br>
-      </small>
-
-  workflow: 
-    label: "Notebook Workflow"
-    widget: "select"
-    required: true
-    value: "standard"
-    options:
-      - ["Standard Jupyter Notebook","standard"]
-      - ["Tensorflow Notebook","tensorflow"]
 
   working_dir:
     label: "Absolute path to working directory"
@@ -159,10 +132,7 @@ attributes:
     help: "Select your project directory; defaults to $HOME"
 
 form:
-  - modules
-  - pbs_modules
-  - pbs_venv
-  - workflow
+  - images
   - pbs_select
   - pbs_ncpus
   - pbs_mem
