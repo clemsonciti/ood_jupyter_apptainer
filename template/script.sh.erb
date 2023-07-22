@@ -111,7 +111,7 @@ singularity --version
 
 #jupyter lab --config="${CONFIG_FILE}" --no-browser "<%= working_dir.to_s %>"
 #apptainer exec --bind /software,$TMPDIR:$TMPDIR,$HOME:$HOME docker://jupyter/scipy-notebook jupyter lab --config="${CONFIG_FILE}" --no-browser "<%= working_dir.to_s %>"
-apptainer exec --env PBS_NODEFILE=$PBS_NODEFILE --bind /software,$TMPDIR:$TMPDIR,$HOME:$HOME,$PBS_NODEFILE:$PBS_NODEFILE "<%= context.images %>" jupyter lab --config="${CONFIG_FILE}" --no-browser "<%= working_dir.to_s %>"
+apptainer exec --nv --env PBS_NODEFILE=$PBS_NODEFILE --bind /software,$TMPDIR:$TMPDIR,$HOME:$HOME,$PBS_NODEFILE:$PBS_NODEFILE "<%= context.images %>" jupyter lab --config="${CONFIG_FILE}" --no-browser "<%= working_dir.to_s %>"
 
 
 
